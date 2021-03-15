@@ -10,3 +10,9 @@ let pokemonRepository = (function () {
   }
 }
 )
+
+let pokemon = pokemonList
+let text = ""
+for (let i = 0; i < pokemonList.length; i++) {
+  document.write(text)
+}
