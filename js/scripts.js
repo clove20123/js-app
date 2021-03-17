@@ -4,13 +4,15 @@ let repository = [
   { name: 'Charizard', height: 1.7, types: ['fire', 'flying']},
   ];
 
-  function printArrayDetails() {
-    for (let i = 0; i < repository.length; i++) {
-      if (repository.size > 1.2) {
-        document.write('This is a big pokemon')
-      }
+function printArrayDetails() {
+  for (let i = 0; i < repository.length; i++) {
+    if (repository[i].height > 1.2) {
+      document.write("<p>" + repository[i].name, repository[i].height, repository[i].types + 'This is a big pokemon' + "</p>")
+    }
+    else {
       document.write("<p>" + repository[i].name, repository[i].height, repository[i].types + "</p>")
     }
   }
+}
 
 printArrayDetails();
