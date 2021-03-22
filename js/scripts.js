@@ -6,26 +6,38 @@ let pokemonRepository = (function () {
     { name: 'Charmeleon', height: 1.1, types: ['fire']},
     { name: 'Charizard', height: 1.7, types: ['fire', 'flying']},
     ];
-    return {
-      add: function(pokemon) {
-        pokemonList.push(pokemon);
-      },
-      getAll: function() {
+    function add(pokemon) {
+        if (
+          typeof pokemon === "object" &&
+          "name" in pokemon &&
+          "height" in pokemon &&
+          "types" in pokemon
+        ) {
+          pokemonList.push(pokemon);
+        } else {
+          console.log("pokemon is not correct");
+        }
+      }
+      function getAll() {
         return pokemonList;
       }
+      function addListItem(pokemon) {
+        let pokemonList = document.querySelector(".pokemon-list");
+        let listpokemon = document.createElement("li");
+        let button = document.createElement("button");
+        button.innerText = pokemon.name;
+        button.classList.add("button-class");
+        listpokemon.appendChild(button);
+        pokemonList.appendChild(listpokemon);
+      }
+      return {
+        add: add,
+        getAll: getAll,
+        addListItem: addListItem
     };
   })();
 
 //for each loop to display pokemonList in browser
 pokemonRepository.getAll().forEach(function(pokemon) {
-  let pokemonName = pokemon.name
-  let pokemonHeight = pokemon.height
-  let pokemonTypes = pokemon.types
-// adding wow thats a big pokemon if height is greater than 1.2
-  if(pokemonHeight > 1.2) {
-    document.write(pokemonName + pokemonHeight + pokemonTypes + 'Wow that is a big pokemon <br>');
-    }
-    else {
-      document.write(pokemonName + pokemonHeight + pokemonTypes + '<br>');
-    }
+  pokemonRepository.addListItem(pokemon);
 });
