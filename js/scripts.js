@@ -30,6 +30,9 @@ let pokemonRepository = (function () {
         listpokemon.appendChild(button);
         pokemonList.appendChild(listpokemon);
       }
+      function showDetails(pokemon) {
+        
+      };
       return {
         add: add,
         getAll: getAll,
