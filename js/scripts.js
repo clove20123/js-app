@@ -115,7 +115,7 @@ let pokemonRepository = (function () {
 
       function showDetails(item) {
         loadDetails(item).then(function () {
-          showModal(pokemon);
+          showModal(item);
         });
       }
 
