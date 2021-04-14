@@ -1,62 +1,9 @@
 //IIFE
 let pokemonRepository = (function () {
-  let modalContainer = document.querySelector('#modal-container');
   //defining pokemon list
   let pokemonList = [];
   let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
 
-  function showModal(pokemon) {
-
-    modalContainer.innerHTML ='';
-    let modal = document.createElement('div');
-    modal.classList.add('modal');
-
-    let closeButtonElement = document.createElement('button');
-    closeButtonElement.classList.add('modal-close');
-    closeButtonElement.innerText = 'Close';
-
-    //Display name of pokemon in modal
-    let pokemonName = document.createElement('h1');
-    pokemonName.innerText = pokemon.name;
-
-    //display the height of the pokemon in modal
-    let pokemonHeight = document.createElement('p');
-    pokemonHeight.innerText = pokemon.height
-
-    //display the image of the pokemon in the modal
-    let containerImg = document.querySelector('#image-container');
-    let pokemonImg = document.createElement('img');
-    pokemonImg.src = pokemon.imageUrl;
-
-    modal.appendChild(closeButtonElement);
-    modal.appendChild(pokemonName);
-    modal.appendChild(pokemonHeight);
-    modal.appendChild(pokemonImg);
-    modalContainer.appendChild(modal);
-
-    modalContainer.classList.add('is-visible');
-
-  }
-
-  //Hide Modal
-  function hideModal() {
-    modalContainer.classList.remove('is-visible');
-  }
-
-  //close the modal with escape
-  window.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && modalContainer.classList.contains('is-visible')) {
-      hideModal();
-    }
-  });
-
-  //close the modal when user clicks outside of the modal
-  modalContainer.addEventListener('click', (e) => {
-   let target = e.target;
-   if (target === modalContainer) {
-     hideModal();
-   }
- });
 
     function add(pokemon) {
         if (
