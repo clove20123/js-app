@@ -7,10 +7,11 @@ let pokemonRepository = (function () {
 
     function add(item) {
         if (
-          typeof pokemon === "object" &&
-          "name" in pokemon
+          typeof item === "object" &&
+          'name' in item &&
+          'detailsUrl' in item
         ) {
-          pokemonList.push(pokemon);
+          pokemonList.push(item);
         }
       }
       function getAll() {
@@ -25,8 +26,8 @@ let pokemonRepository = (function () {
         button.innerText = pokemon.name;
         button.classList.add('btn');
         button.classList.add('btn-block');
-        button.setAttribute('data-target', 'modal');
-        button.setAttribute('data-toggel', 'modal');
+        button.setAttribute('data-target', '#pokemonModal');
+        button.setAttribute('data-toggle', 'modal');
         listItem.appendChild(button);
         container.appendChild(listItem);
         button.addEventListener('click', function() {
@@ -65,7 +66,7 @@ let pokemonRepository = (function () {
 
       function showDetails(pokemon) {
 
-        loadDetails(item).then(function () {
+        loadDetails(pokemon).then(function () {
           let modalBody = $('.modal-body');
           let modalTitle = $('.modal-title');
           let modalHeader = $('.modal-header');
@@ -80,7 +81,7 @@ let pokemonRepository = (function () {
 
           modalTitle.append(pokemonName);
           modalBody.append(pokemonImage);
-          modalBoday.append(pokemonHeight);
+          modalBody.append(pokemonHeight);
         });
       }
 
