@@ -3,7 +3,7 @@ let pokemonRepository = (function () {
   //defining pokemon list
   let pokemonList = [];
   let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
-
+  let searchInput = document.querySelector('#search-bar');
 
     function add(item) {
         if (
@@ -77,13 +77,29 @@ let pokemonRepository = (function () {
           let pokemonName = $('<h1>' + pokemon.name + '</h1>');
           let pokemonImage = $('<img class="modal-img" style="width:50%">');
           pokemonImage.attr('src', pokemon.imageUrl);
-          let pokemonHeight = $('<p>' + 'Height' + pokemon.height + '</p>');
+          let pokemonHeight = $('<p>' + 'Height: ' + pokemon.height + '</p>');
+          let pokemonTypes = $('<p>' + 'Types: ' + pokemon.types + '</p>');
 
           modalTitle.append(pokemonName);
           modalBody.append(pokemonImage);
           modalBody.append(pokemonHeight);
+          modalBody.append(pokemonTypes);
         });
       }
+
+searchInput.addEventListener('input', function () {
+  let pokemonList = document.querySelectorAll('.list-group-item');
+  let filterValue = searchInput.value.toUpperCase();
+
+  pokemonList.forEach(function(pokemon) {
+    console.log(pokemon.innerText);
+    if(pokemon.innerText.toUpperCase().indexOf(filterValue) > -1) {
+      pokemon.style.display = '';
+    }else {
+      pokemon.style.display = 'none';
+    }
+  })
+});
 
       return {
         add: add,
