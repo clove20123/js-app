@@ -58,7 +58,9 @@ let pokemonRepository = (function () {
         }).then(function (details) {
           item.imageUrl = details.sprites.front_default;
           item.height = details.height;
-          item.types = details.types;
+          item.types = details.types.map(function(pokemon) {
+            return pokemon.type.name;
+          });
         }).catch(function (e) {
           console.error(e);
         });
@@ -78,7 +80,7 @@ let pokemonRepository = (function () {
           let pokemonImage = $('<img class="modal-img" style="width:50%">');
           pokemonImage.attr('src', pokemon.imageUrl);
           let pokemonHeight = $('<p>' + 'Height: ' + pokemon.height + '</p>');
-          let pokemonTypes = $('<p>' + 'Types: ' + pokemon.types + '</p>');
+          let pokemonTypes = $('<p>' + 'Type(s): ' + pokemon.types + '</p>');
 
           modalTitle.append(pokemonName);
           modalBody.append(pokemonImage);
